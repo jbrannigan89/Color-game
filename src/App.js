@@ -1,23 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import Header from "./components/Header";
+import AnswerGrid from "./components/AnswerGrid";
+import QuestionGrid from "./components/QuestionGrid";
 
+let colorArray = ["blue", "red", "yellow", "green", "purple", "orange"];
+console.log(colorArray);
+
+//Start button changing the visibility of the Question Grif
 function App() {
+  const [questionGrid, setquestionGrid] = useState(false);
+  function startClick() {
+    setquestionGrid(!questionGrid);
+    console.log(questionGrid);
+  }
+  let selectedColors = [];
+  //Getting random color
+  function random() {
+    for (let i = 0; i < 3; i++) {
+      let colorArray = ["blue", "red", "yellow", "green", "purple", "orange"];
+      let randomNumber = Math.floor(Math.random() * 6);selectedColors.push(colorArray[randomNumber]);
+      return colorArray[randomNumber];
+    }
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header startClick={startClick} />
+      <QuestionGrid displayState={questionGrid} random={random()} />
+      <AnswerGrid />
     </div>
   );
 }
