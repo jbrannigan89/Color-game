@@ -15,14 +15,18 @@ function App() {
     setquestionGrid(!questionGrid);
     console.log(questionGrid);
   }
-  let selectedColors = [];
+
   //Getting random color
   function random() {
+    let selectedColors = [];
     for (let i = 0; i < 3; i++) {
       let colorArray = ["blue", "red", "yellow", "green", "purple", "orange"];
-      let randomNumber = Math.floor(Math.random() * 6);selectedColors.push(colorArray[randomNumber]);
-      return colorArray[randomNumber];
+      let randomNumber = Math.floor(Math.random() * 6);
+      selectedColors.push(colorArray[randomNumber]);
+     
     }
+    console.log(selectedColors);
+    return selectedColors;
   }
 
   return (

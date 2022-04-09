@@ -16,9 +16,12 @@ const QuestionGrid = (props) => {
     <div className="Question-Grid">
       <button className="next-level">Next Level</button>
       <div className="box-container">
-        <ColorBox color={props.random} />
-        <ColorBox color={props.random} />
-        <ColorBox color={props.random} />
+        <ColorBox color={props.random[0]} />
+        <p>{props.random[0]}</p>
+        <ColorBox color={props.random[1]} />
+        <p>{props.random[1]}</p>
+        <ColorBox color={props.random[2]} />
+        <p>{props.random[2]}</p>
       </div>
     </div>
   );
