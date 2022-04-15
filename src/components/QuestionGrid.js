@@ -2,25 +2,26 @@ import React from "react";
 import ColorBox from "./colorBox";
 
 const QuestionGrid = (props) => {
-  function random() {
-    let colorArray = ["blue", "red", "yellow", "green", "purple", "orange"];
-    let randomNumber = Math.floor(Math.random() * 6);
-    console.log(randomNumber);
-    console.log(colorArray[randomNumber]);
-    return colorArray[randomNumber];
+  let colors = props.random;
+
+  function changeColor(colors) {
+    console.log(props.random.map(x => "red"))
   }
-  let randomNumber = Math.floor(Math.random() * 6);
+  
   return props.displayState === false ? (
     <div className="Question-Grid invisible"></div>
   ) : (
     <div className="Question-Grid">
-      <button className="next-level">Next Level</button>
+        <button className="next-level" onClick={props.levelStatus}>
+        Start Level
+      </button>
+     
       <div className="box-container">
-        <ColorBox color={props.random[0]} />
+        <ColorBox color={colors[0]} />
         <p>{props.random[0]}</p>
-        <ColorBox color={props.random[1]} />
+        <ColorBox color={colors[1]} />
         <p>{props.random[1]}</p>
-        <ColorBox color={props.random[2]} />
+        <ColorBox color={colors[2]} />
         <p>{props.random[2]}</p>
       </div>
     </div>

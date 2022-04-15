@@ -1,8 +1,10 @@
 import React from "react";
 import ColorBox from "./colorBox";
 
-const AnswerGrid = () => {
-  return (
+const AnswerGrid = (props) => {
+  return props.displayState === false ? (
+    <div className="Answer-Grid invisible"></div>
+  ) : (
     <div className="Answer-Grid">
       <ColorBox color="blue" />
       <ColorBox color="red" />
