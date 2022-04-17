@@ -13,7 +13,6 @@ function App() {
   const [questionGrid, setquestionGrid] = useState(false);
   function startClick() {
     setquestionGrid(!questionGrid);
-    console.log(questionGrid);
   }
 
   //Setting the status of startLevel button
@@ -22,35 +21,50 @@ function App() {
   const setLevelStatus = () => {
     setStartLevel(!startLevel);
   };
- 
+  const nextButtonStyle = () => {
+    if (startLevel) {
+      return { display: "none" };
+    } else return { display: "inline" };
+  };
 
-  
-  let selectedColors = [];
+  const colorChange = () => {
+    if (startLevel) {
+      return  "0" ;
+    } else return  "1" ;
+  };
+
+  const levelInfo = {
+    randomColors: [],
+    level: 1,
+    answerColors: [],
+    realColorsArray: [],
+  };
+  console.log(levelInfo.realColorsArray);
+
+  random();
   //Getting random color
   function random() {
-    if (questionGrid === false) {
-      return;
-    } else if (startLevel == true) {
-      return ["gray", "gray", "gray"];
-    } else {
+   
+     {
       for (let i = 0; i < 3; i++) {
         let colorArray = ["blue", "red", "yellow", "green", "purple", "orange"];
         let randomNumber = Math.floor(Math.random() * 6);
-        selectedColors.push(colorArray[randomNumber]);
+        levelInfo.randomColors.push(colorArray[randomNumber]);
+        levelInfo.realColorsArray.push(colorArray[randomNumber]);
       }
-
-      return selectedColors;
     }
   }
 
   return (
     <div className="App">
-      <Header startClick={startClick} />
+      <Header startClick={startClick} colorChange={colorChange} />
       <QuestionGrid
         displayState={questionGrid}
-        random={random()}
         levelStatus={setLevelStatus}
-      
+        actualLevelStatus={startLevel}
+        nextButtonStyle={nextButtonStyle()}
+        Info={levelInfo}
+        colorChange={colorChange()}
       />
       <AnswerGrid displayState={questionGrid} />
     </div>

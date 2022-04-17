@@ -14,7 +14,8 @@ code {
 
 .Answer-Grid {
   display: flex;
-  column-gap: 0.5em;justify-content: center;
+  column-gap: 0.5em;
+  justify-content: center;
 }
 .box {
   border-radius: 1em;
@@ -27,6 +28,12 @@ code {
 }
 
 .box-container {
-  display: flex;justify-content: center;
+  display: flex;
+  justify-content: center;
   column-gap: 0.5em;
+}
+
+.blackBox {
+  border: 1px solid black;
+  border-radius: 1em;
 }
