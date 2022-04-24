@@ -8,12 +8,12 @@ const AnswerGrid = (props) => {
     <div className="Answer-Grid invisible"></div>
   ) : (
     <div className="Answer-Grid">
-      <ColorBox color="blue" opacity={opa} />
-      <ColorBox color="red" opacity={opa} />
-      <ColorBox color="yellow" opacity={opa} />
-      <ColorBox color="green" opacity={opa} />
-      <ColorBox color="purple" opacity={opa} />
-      <ColorBox color="orange" opacity={opa} />
+      <ColorBox color="blue" opacity={opa} answers={props.answers} />
+      <ColorBox color="red" opacity={opa} answers={props.answers} />
+      <ColorBox color="yellow" opacity={opa} answers={props.answers} />
+      <ColorBox color="green" opacity={opa} answers={props.answers} />
+      <ColorBox color="purple" opacity={opa} answers={props.answers} />
+      <ColorBox color="orange" opacity={opa} answers={props.answers} />
     </div>
   );
 };
