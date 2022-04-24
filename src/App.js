@@ -6,10 +6,26 @@ import AnswerGrid from "./components/AnswerGrid";
 import QuestionGrid from "./components/QuestionGrid";
 import { FaBorderNone } from "react-icons/fa";
 
-let colorArray = ["blue", "red", "yellow", "green", "purple", "orange"];
-
 function App() {
-  //Start button changing the visibility of the Question Grid
+  const [list, setList] = useState([]);
+
+  const [levelInfo, setlevelInfo] = useState({
+    randomColors: [],
+    level: 1,
+    answerColors: [],
+    realColorsArray: [],
+  });
+  //Getting random color
+  function random() {
+    {
+      for (let i = 0; i < 3; i++) {
+        let colorArray = ["blue", "red", "yellow", "green", "purple", "orange"];
+        let randomNumber = Math.floor(Math.random() * 6);
+        levelInfo.realColorsArray.splice(i, 1, colorArray[randomNumber]);
+        levelInfo.realColorsArray.push(colorArray[randomNumber]);
+      }
+    }
+  }
   const [questionGrid, setquestionGrid] = useState(false);
   function startClick() {
     setquestionGrid(!questionGrid);
@@ -26,38 +42,37 @@ function App() {
       return { display: "none" };
     } else return { display: "inline" };
   };
-
+  /*const [opacity, setopacity] = useState(1);
+  function yep() {
+    setTimeout(setopacity(0), 2000);
+  }
   const colorChange = () => {
     if (startLevel) {
-      return  "0" ;
-    } else return  "1" ;
-  };
-
-  const levelInfo = {
-    randomColors: [],
-    level: 1,
-    answerColors: [],
-    realColorsArray: [],
-  };
-  console.log(levelInfo.realColorsArray);
-
-  random();
-  //Getting random color
-  function random() {
-   
-     {
-      for (let i = 0; i < 3; i++) {
-        let colorArray = ["blue", "red", "yellow", "green", "purple", "orange"];
-        let randomNumber = Math.floor(Math.random() * 6);
-        levelInfo.randomColors.push(colorArray[randomNumber]);
-        levelInfo.realColorsArray.push(colorArray[randomNumber]);
-      }
+      yep();
+    } else {
+      setopacity(1);
     }
+  };
+  function myStopFunction() {
+    clearTimeout(yep);
+  }
+  myStopFunction();*/
+  const colorChange = () => {
+    if (startLevel) {
+      return "0";
+    } else {
+      return "1";
+    }
+  };
+  if (questionGrid && !startLevel) {
+    random();
+  } else if (questionGrid && startLevel) {
+    console.log(levelInfo);
   }
 
   return (
     <div className="App">
-      <Header startClick={startClick} colorChange={colorChange} />
+      <Header startClick={startClick} />
       <QuestionGrid
         displayState={questionGrid}
         levelStatus={setLevelStatus}

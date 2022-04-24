@@ -20,6 +20,7 @@ code {
 .box {
   border-radius: 1em;
 }
+
 .Question-Grid {
   height: 30vh;
 }
@@ -36,4 +37,8 @@ code {
 .blackBox {
   border: 1px solid black;
   border-radius: 1em;
+}
+.blackBox:hover {
+  border: 1px solid rgb(67, 192, 29);
+  cursor: pointer;box-shadow:  0px 0px 10px black;
 }

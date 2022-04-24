@@ -5,13 +5,13 @@ const ColorBox = (props) => {
     width: "70px",
     height: "50px",
     backgroundColor: props.color,
-    border: "1px solid black",
+
     opacity: props.opacity,
   };
 
   return (
     <div className="blackBox" style={{ backgroundColor: "gray" }}>
-      <div className="box" style={boxStyle}></div>
+      <div className="box" style={boxStyle} onClick={() => { console.log(props.color) }}></div>
     </div>
   );
 };
