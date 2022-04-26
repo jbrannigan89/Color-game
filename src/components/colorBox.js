@@ -18,7 +18,7 @@ const ColorBox = (props) => {
           props.answers(props.color);
         }}
       >
-        {" "}
+        {props.color}
       </div>
     </div>
   );

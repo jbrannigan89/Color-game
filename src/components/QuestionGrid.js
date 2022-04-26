@@ -13,11 +13,26 @@ const QuestionGrid = (props) => {
       </button>
 
       <div className="box-container">
-        <ColorBox
-          color={props.Info.realColorsArray[0]}
+          {props.Info.realColorsArray.map((eachColor) => (<ColorBox
+          color={eachColor}
           opacity={props.colorChange}
         />
-        <p>{props.Info.realColorsArray[0]}</p>
+       
+          ))}
+
+        {/*   <ColorBox
+          color={eachColor}
+          opacity={props.colorChange}
+        />
+
+
+{props.tasks.map((task) => (
+          <Task key={task.id} task={task} Del= {props.onDelete} />
+        ))}
+
+
+
+        <p>{eachColor}</p>
         <ColorBox
           color={props.Info.realColorsArray[1]}
           opacity={props.colorChange}
@@ -27,7 +42,7 @@ const QuestionGrid = (props) => {
           color={props.Info.realColorsArray[2]}
           opacity={props.colorChange}
         />
-        <p>{props.Info.realColorsArray[2]}</p>
+        <p>{props.Info.realColorsArray[2]}</p>*/}
       </div>
     </div>
   );

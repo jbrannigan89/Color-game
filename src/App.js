@@ -16,15 +16,16 @@ function App() {
     level: 1,
     answerColors: [],
     realColorsArray: [],
+    numberofQuestions: 3,
   });
   //Getting random color
-  function random() {
+
+  function random(number) {
     {
-      for (let i = 0; i < 2; i++) {
+      for (let i = 0; i < number; i++) {
         let colorArray = ["blue", "red", "yellow", "green", "purple", "orange"];
         let randomNumber = Math.floor(Math.random() * 6);
         levelInfo.realColorsArray.splice(i, 1, colorArray[randomNumber]);
-        levelInfo.realColorsArray.push(colorArray[randomNumber]);
       }
     }
   }
@@ -56,20 +57,29 @@ function App() {
   };
   //only call random function when startLevel is false
   if (questionGrid && !startLevel) {
-    random();
+    random(levelInfo.numberofQuestions);
   } else if (questionGrid && startLevel) {
     console.log(levelInfo);
   }
   function answerStatus() {
     for (let i = 0; i < levelInfo.realColorsArray.length; i++) {
       if (levelInfo.realColorsArray[i] !== levelInfo.answerColors[i]) {
-        return console.log("Incorrect Answers");
+        levelInfo.numberofQuestions = 3;
+        levelInfo.answerColors = []; levelInfo.realColorsArray = [];
+        console.log("Incorrect Answers");
+        
+        return startClick();
       } else {
         console.log("true");
       }
     }
 
     console.log("correct answers");
+    levelInfo.numberofQuestions += 1;
+    console.log(levelInfo.numberofQuestions);
+    levelInfo.answerColors = [];
+    random(levelInfo.numberofQuestions);
+    setLevelStatus();
   }
   //Putting the users selected Colors into Info Object
   function answerEntry(color) {
