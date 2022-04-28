@@ -33,18 +33,17 @@ function App() {
   function startClick() {
     setquestionGrid(!questionGrid);
   }
+  const startButtonStyle = () => {
+    if (questionGrid === true) {
+      return { display: "none" };
+    } else return { display: "inline" };
+  };
 
   //Setting the status of startLevel button
   const [startLevel, setStartLevel] = useState(false);
 
   const setLevelStatus = () => {
     setStartLevel(!startLevel);
-  };
-  //Start Level Button disappearing
-  const nextButtonStyle = () => {
-    if (startLevel) {
-      return { display: "none" };
-    } else return { display: "inline" };
   };
 
   //Changing the opacity when start level button is pressed
@@ -53,6 +52,13 @@ function App() {
       return "0";
     } else {
       return "1";
+    }
+  }; //Start Level Button disappearing
+  const nextButtonStyle = () => {
+    if (startLevel) {
+      return { display: "none" };
+    } else {
+      return { display: "inline" };
     }
   };
   //only call random function when startLevel is false
@@ -65,9 +71,10 @@ function App() {
     for (let i = 0; i < levelInfo.realColorsArray.length; i++) {
       if (levelInfo.realColorsArray[i] !== levelInfo.answerColors[i]) {
         levelInfo.numberofQuestions = 3;
-        levelInfo.answerColors = []; levelInfo.realColorsArray = [];
+        levelInfo.answerColors = [];
+        levelInfo.realColorsArray = [];
         console.log("Incorrect Answers");
-        
+        setLevelStatus();
         return startClick();
       } else {
         console.log("true");
@@ -92,7 +99,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header startClick={startClick} />
+      <Header startClick={startClick} startStyle={startButtonStyle()} />
       <QuestionGrid
         displayState={questionGrid}
         levelStatus={setLevelStatus}

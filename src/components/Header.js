@@ -4,7 +4,7 @@ const header = (props) => {
   return (
     <>
       <div>Color Memory Game</div>
-      <Startbutton click={props.startClick} randomColor={props.randomColor} />
+      <Startbutton click={props.startClick} randomColor={props.randomColor} startStyle = {props.startStyle} />
     </>
   );
 };

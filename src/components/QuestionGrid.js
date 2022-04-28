@@ -8,17 +8,18 @@ const QuestionGrid = (props) => {
     <div className="Question-Grid invisible"></div>
   ) : (
     <div className="Question-Grid">
-      <button className="next-level" onClick={props.levelStatus}>
+      <button
+        className="next-level"
+        style={props.nextButtonStyle}
+        onClick={props.levelStatus}
+      >
         Start Level
       </button>
 
       <div className="box-container">
-          {props.Info.realColorsArray.map((eachColor) => (<ColorBox
-          color={eachColor}
-          opacity={props.colorChange}
-        />
-       
-          ))}
+        {props.Info.realColorsArray.map((eachColor) => (
+          <ColorBox color={eachColor} opacity={props.colorChange} />
+        ))}
 
         {/*   <ColorBox
           color={eachColor}
