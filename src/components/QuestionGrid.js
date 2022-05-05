@@ -21,6 +21,7 @@ const QuestionGrid = (props) => {
           <ColorBox color={eachColor} opacity={props.colorChange} />
         ))}
       </div>
+      <h3>Points: {props.Info.points}</h3>
     </div>
   );
 };

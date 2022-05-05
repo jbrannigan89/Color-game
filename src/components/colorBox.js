@@ -17,9 +17,7 @@ const ColorBox = (props) => {
         onClick={() => {
           props.answers(props.color);
         }}
-      >
-        {props.color}
-      </div>
+      ></div>
     </div>
   );
 };
