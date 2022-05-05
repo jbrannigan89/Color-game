@@ -17,6 +17,9 @@ function App() {
     answerColors: [],
     realColorsArray: [],
     numberofQuestions: 3,
+    points: 0,
+    clicks: 0,
+    IncorrectRound: { right: [], selected: [] },
   });
   //Getting random color
 
@@ -67,12 +70,13 @@ function App() {
   } else if (questionGrid && startLevel) {
     console.log(levelInfo);
   }
-  function answerStatus() {
+  /*  function answerStatus() {
     for (let i = 0; i < levelInfo.realColorsArray.length; i++) {
       if (levelInfo.realColorsArray[i] !== levelInfo.answerColors[i]) {
         levelInfo.numberofQuestions = 3;
         levelInfo.answerColors = [];
         levelInfo.realColorsArray = [];
+        levelInfo.points = 0;
         console.log("Incorrect Answers");
         setLevelStatus();
         return startClick();
@@ -82,24 +86,55 @@ function App() {
     }
 
     console.log("correct answers");
+    levelInfo.points += 100;
     levelInfo.numberofQuestions += 1;
     console.log(levelInfo.numberofQuestions);
     levelInfo.answerColors = [];
     random(levelInfo.numberofQuestions);
     setLevelStatus();
-  }
+  }*/
   //Putting the users selected Colors into Info Object
   function answerEntry(color) {
     levelInfo.answerColors.push(color);
-    if (levelInfo.answerColors.length == levelInfo.realColorsArray.length) {
-      console.log("correct length");
-      answerStatus();
+    if (
+      levelInfo.answerColors.length == levelInfo.realColorsArray.length &&
+      levelInfo.answerColors[levelInfo.clicks - 1] ==
+        levelInfo.realColorsArray[levelInfo.clicks - 1]
+    ) {
+      console.log("correct answers");
+      levelInfo.points += 100;
+      levelInfo.numberofQuestions += 1;
+      levelInfo.clicks = 0;
+      console.log(levelInfo.numberofQuestions);
+      levelInfo.answerColors = [];
+      random(levelInfo.numberofQuestions);
+      setLevelStatus();
+    } else if (
+      levelInfo.answerColors[levelInfo.clicks] ==
+      levelInfo.realColorsArray[levelInfo.clicks]
+    ) {
+      return (levelInfo.clicks += 1);
+    } else {
+      levelInfo.IncorrectRound.right = levelInfo.realColorsArray.slice();
+      levelInfo.IncorrectRound.selected = levelInfo.answerColors.slice();
+      levelInfo.clicks = 0;
+      levelInfo.numberofQuestions = 3;
+      levelInfo.answerColors = [];
+      levelInfo.realColorsArray = [];
+      levelInfo.points = 0;
+      console.log("Incorrect Answers");
+      setLevelStatus();
+      return startClick();
     }
   }
 
   return (
     <div className="App">
-      <Header startClick={startClick} startStyle={startButtonStyle()} />
+      <Header
+        startClick={startClick}
+        startStyle={startButtonStyle()}
+        Info={levelInfo}
+      />
       <QuestionGrid
         displayState={questionGrid}
         levelStatus={setLevelStatus}
@@ -108,7 +143,12 @@ function App() {
         Info={levelInfo}
         colorChange={colorChange()}
       />
-      <AnswerGrid displayState={questionGrid} answers={answerEntry} />
+      <AnswerGrid
+        displayState={questionGrid}
+        answers={answerEntry}
+        actualLevelStatus={startLevel}
+        Info={levelInfo}
+      />
     </div>
   );
 }

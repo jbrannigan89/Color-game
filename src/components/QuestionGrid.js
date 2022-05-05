@@ -2,7 +2,7 @@ import React from "react";
 import ColorBox from "./colorBox";
 
 const QuestionGrid = (props) => {
-  console.log(props.colorChange);
+  console.log(props.Info.answerColors);
 
   return props.displayState === false ? (
     <div className="Question-Grid invisible"></div>
@@ -20,30 +20,6 @@ const QuestionGrid = (props) => {
         {props.Info.realColorsArray.map((eachColor) => (
           <ColorBox color={eachColor} opacity={props.colorChange} />
         ))}
-
-        {/*   <ColorBox
-          color={eachColor}
-          opacity={props.colorChange}
-        />
-
-
-{props.tasks.map((task) => (
-          <Task key={task.id} task={task} Del= {props.onDelete} />
-        ))}
-
-
-
-        <p>{eachColor}</p>
-        <ColorBox
-          color={props.Info.realColorsArray[1]}
-          opacity={props.colorChange}
-        />
-        <p>{props.Info.realColorsArray[1]}</p>
-        <ColorBox
-          color={props.Info.realColorsArray[2]}
-          opacity={props.colorChange}
-        />
-        <p>{props.Info.realColorsArray[2]}</p>*/}
       </div>
     </div>
   );
