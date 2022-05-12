@@ -10,7 +10,7 @@ const ColorBox = (props) => {
   };
 
   return (
-    <div className="blackBox" style={{ backgroundColor: "gray" }}>
+    <div className="blackBox" style={{ backgroundColor: "transparent" }}>
       <div
         className="box"
         style={boxStyle}

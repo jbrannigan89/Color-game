@@ -9,8 +9,7 @@ import QuestionGrid from "./components/QuestionGrid";
 import { FaBorderNone } from "react-icons/fa";
 
 function App() {
-  const [list, setList] = useState([]);
-
+  //Main level tracking object
   const [levelInfo, setlevelInfo] = useState({
     randomColors: [],
     level: 1,
@@ -20,9 +19,79 @@ function App() {
     points: 0,
     clicks: 0,
     IncorrectRound: { right: [], selected: [] },
+    changeColor: false,
   });
-  //Getting random color
 
+  //Start Button Display
+  const startButtonStyle = () => {
+    if (questionGrid === true) {
+      return { display: "none" };
+    } else return { display: "inline" };
+  };
+
+  //Incorrect Answers Display, shows up when a round has been completed
+  const IncorrectStyle = () => {
+    if (
+      questionGrid === true ||
+      levelInfo.IncorrectRound.selected.length == 0
+    ) {
+      return { display: "none" };
+    } else return { display: "inline" };
+  };
+
+  //Changing the opacity when start level button is pressed so that the colors are blocked by grey color
+  const colorChange = (index) => {
+    if (
+      startLevel &&
+      levelInfo.realColorsArray[index] ==
+        levelInfo.answerColors[index]
+    ) {
+      return "1";
+    }
+    if (startLevel) {
+      return "0";
+    }
+  };
+
+  /*const colorChange = (color) => {
+    if (
+      startLevel &&
+      levelInfo.realColorsArray.indexOf(color) ==
+        levelInfo.answerColors.indexOf(color)
+    ) {
+      setcolorChanger("1");
+    } else if (startLevel) {
+      setcolorChanger("0");
+    } else {
+      setcolorChanger("1");
+    }
+  };*/
+
+  const [colorChanger, setcolorChanger] = useState(true);
+
+  //Start Level Button disappearing after clicked
+  const nextButtonStyle = () => {
+    if (startLevel) {
+      return { display: "none" };
+    } else {
+      return { display: "inline" };
+    }
+  };
+
+  //Random Colors Section State
+  const [questionGrid, setquestionGrid] = useState(false);
+  function startClick() {
+    setquestionGrid(!questionGrid);
+  }
+
+  //Setting the status of startLevel button
+  const [startLevel, setStartLevel] = useState(false);
+
+  const setLevelStatus = () => {
+    setStartLevel(!startLevel);
+  };
+
+  //Getting random color
   function random(number) {
     {
       for (let i = 0; i < number; i++) {
@@ -32,68 +101,13 @@ function App() {
       }
     }
   }
-  const [questionGrid, setquestionGrid] = useState(false);
-  function startClick() {
-    setquestionGrid(!questionGrid);
-  }
-  const startButtonStyle = () => {
-    if (questionGrid === true) {
-      return { display: "none" };
-    } else return { display: "inline" };
-  };
-
-  //Setting the status of startLevel button
-  const [startLevel, setStartLevel] = useState(false);
-
-  const setLevelStatus = () => {
-    setStartLevel(!startLevel);
-  };
-
-  //Changing the opacity when start level button is pressed
-  const colorChange = () => {
-    if (startLevel) {
-      return "0";
-    } else {
-      return "1";
-    }
-  }; //Start Level Button disappearing
-  const nextButtonStyle = () => {
-    if (startLevel) {
-      return { display: "none" };
-    } else {
-      return { display: "inline" };
-    }
-  };
   //only call random function when startLevel is false
   if (questionGrid && !startLevel) {
     random(levelInfo.numberofQuestions);
   } else if (questionGrid && startLevel) {
     console.log(levelInfo);
   }
-  /*  function answerStatus() {
-    for (let i = 0; i < levelInfo.realColorsArray.length; i++) {
-      if (levelInfo.realColorsArray[i] !== levelInfo.answerColors[i]) {
-        levelInfo.numberofQuestions = 3;
-        levelInfo.answerColors = [];
-        levelInfo.realColorsArray = [];
-        levelInfo.points = 0;
-        console.log("Incorrect Answers");
-        setLevelStatus();
-        return startClick();
-      } else {
-        console.log("true");
-      }
-    }
 
-    console.log("correct answers");
-    levelInfo.points += 100;
-    levelInfo.numberofQuestions += 1;
-    console.log(levelInfo.numberofQuestions);
-    levelInfo.answerColors = [];
-    random(levelInfo.numberofQuestions);
-    setLevelStatus();
-  }*/
-  //Putting the users selected Colors into Info Object
   function answerEntry(color) {
     levelInfo.answerColors.push(color);
     if (
@@ -113,7 +127,9 @@ function App() {
       levelInfo.answerColors[levelInfo.clicks] ==
       levelInfo.realColorsArray[levelInfo.clicks]
     ) {
-      return (levelInfo.clicks += 1);
+      levelInfo.clicks += 1;
+      colorChange(color);
+      setcolorChanger(!colorChanger);
     } else {
       levelInfo.IncorrectRound.right = levelInfo.realColorsArray.slice();
       levelInfo.IncorrectRound.selected = levelInfo.answerColors.slice();
@@ -134,6 +150,7 @@ function App() {
         startClick={startClick}
         startStyle={startButtonStyle()}
         Info={levelInfo}
+        WrongAnswer={IncorrectStyle()}
       />
       <QuestionGrid
         displayState={questionGrid}
@@ -141,7 +158,7 @@ function App() {
         actualLevelStatus={startLevel}
         nextButtonStyle={nextButtonStyle()}
         Info={levelInfo}
-        colorChange={colorChange()}
+        colorChange={colorChange}
       />
       <AnswerGrid
         displayState={questionGrid}

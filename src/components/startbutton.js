@@ -4,7 +4,7 @@ const Startbutton = (props) => {
   return (
     <div>
       <button
-        className="start-button"
+        className="button"
         onClick={props.click}
         style={props.startStyle}
       >

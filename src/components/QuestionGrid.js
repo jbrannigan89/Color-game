@@ -9,7 +9,7 @@ const QuestionGrid = (props) => {
   ) : (
     <div className="Question-Grid">
       <button
-        className="next-level"
+        className="next-level-button"
         style={props.nextButtonStyle}
         onClick={props.levelStatus}
       >
@@ -17,11 +17,21 @@ const QuestionGrid = (props) => {
       </button>
 
       <div className="box-container">
-        {props.Info.realColorsArray.map((eachColor) => (
-          <ColorBox color={eachColor} opacity={props.colorChange} />
-        ))}
+        {
+          /*  {props.Info.realColorsArray.map((eachColor) => (
+            let index = props.Info.realColorsArray.indexOf(eachColor);
+          if(props.Info.realColorsArray.indexOf(eachColor) == props.Info.answerColors.indexOf(eachColor) 
+          return <ColorBox color={eachColor} opacity="1" />*/
+
+          props.Info.realColorsArray.map((eachColor, index) => 
+            <ColorBox
+              color={eachColor}
+              opacity={props.colorChange(index)}
+            />
+          )
+        }
       </div>
-      <h3>Points: {props.Info.points}</h3>
+      <h3 className="points">Points: {props.Info.points}</h3>
     </div>
   );
 };

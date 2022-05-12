@@ -31,7 +31,8 @@ code {
 .box-container {
   display: flex;
   justify-content: center;
-  column-gap: 0.5em;flex-flow: row wrap ;
+  column-gap: 0.5em;
+  flex-flow: row wrap;
 }
 
 .blackBox {
@@ -40,5 +41,46 @@ code {
 }
 .blackBox:hover {
   border: 1px solid rgb(67, 192, 29);
-  cursor: pointer;box-shadow:  0px 0px 10px black;
+  cursor: pointer;
+  box-shadow: 0px 0px 10px black;
+}
+.button {
+  font-size: 2em;
+  font-family: "Marcellus", serif;
+  cursor: pointer;
+  padding: 0.2em 0.6em;
+  border-radius: 0.2em;
+  border-style: none;
+  background: rgb(86, 243, 72);
+  color: white;
+  transition: 2s all;
+  margin: 2em;
+}
+.button:hover {
+  background: white;
+  color: rgb(86, 243, 72);
+}
+.next-level-button {
+  font-size: 1.5em;
+  font-family: "Marcellus", serif;
+  cursor: pointer;
+  padding: 0.2em 0.6em;
+  border-radius: 0.2em;
+  border-style: none;
+  background: rgb(72, 175, 243);
+  color: white;
+  transition: 2s all;
+  margin: 0 0 2em 0;
+}
+.next-level-button:hover {
+  background: rgb(38, 121, 177);
+}
+
+.title {
+  font-family: "Asar", serif;
+  color: rgb(52, 124, 121);
+}
+.points {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.5em;
 }
