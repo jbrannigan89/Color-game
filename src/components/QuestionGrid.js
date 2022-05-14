@@ -15,7 +15,10 @@ const QuestionGrid = (props) => {
       >
         Start Level
       </button>
-
+      <br></br>
+      <h2 className="Reminder" style={props.nextButtonStyle}>
+        Remeber this sequence of colors
+      </h2>
       <div className="box-container">
         {
           /*  {props.Info.realColorsArray.map((eachColor) => (
@@ -23,12 +26,9 @@ const QuestionGrid = (props) => {
           if(props.Info.realColorsArray.indexOf(eachColor) == props.Info.answerColors.indexOf(eachColor) 
           return <ColorBox color={eachColor} opacity="1" />*/
 
-          props.Info.realColorsArray.map((eachColor, index) => 
-            <ColorBox
-              color={eachColor}
-              opacity={props.colorChange(index)}
-            />
-          )
+          props.Info.realColorsArray.map((eachColor, index) => (
+            <ColorBox color={eachColor} opacity={props.colorChange(index)} />
+          ))
         }
       </div>
       <h3 className="points">Points: {props.Info.points}</h3>

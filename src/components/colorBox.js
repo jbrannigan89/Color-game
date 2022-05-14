@@ -1,10 +1,11 @@
 import React from "react";
 import QuestionGrid from "./QuestionGrid";
 import AnswerGrid from "./AnswerGrid";
+import { FaMinus } from "react-icons/fa";
 const ColorBox = (props) => {
   let boxStyle = {
-    width: "70px",
-    height: "50px",
+    width: "min(10vw, 60px)",
+    height: "min(10vw, 60px)",
     backgroundColor: props.color,
     opacity: props.opacity,
   };

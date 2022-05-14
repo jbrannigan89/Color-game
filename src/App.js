@@ -36,15 +36,20 @@ function App() {
       levelInfo.IncorrectRound.selected.length == 0
     ) {
       return { display: "none" };
-    } else return { display: "inline" };
+    } else
+      return {
+        display: "flex",
+        flexFlow: "column",
+        rowGap: ".5em",
+        marginTop: ".5em",
+      };
   };
 
   //Changing the opacity when start level button is pressed so that the colors are blocked by grey color
   const colorChange = (index) => {
     if (
       startLevel &&
-      levelInfo.realColorsArray[index] ==
-        levelInfo.answerColors[index]
+      levelInfo.realColorsArray[index] == levelInfo.answerColors[index]
     ) {
       return "1";
     }
@@ -53,20 +58,7 @@ function App() {
     }
   };
 
-  /*const colorChange = (color) => {
-    if (
-      startLevel &&
-      levelInfo.realColorsArray.indexOf(color) ==
-        levelInfo.answerColors.indexOf(color)
-    ) {
-      setcolorChanger("1");
-    } else if (startLevel) {
-      setcolorChanger("0");
-    } else {
-      setcolorChanger("1");
-    }
-  };*/
-
+  //State used to update the colors when te answers are submitted
   const [colorChanger, setcolorChanger] = useState(true);
 
   //Start Level Button disappearing after clicked
